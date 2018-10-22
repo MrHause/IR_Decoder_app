@@ -1,0 +1,10 @@
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\bin\Debug\IRdekoder.exe.config
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\bin\Debug\IRdekoder.exe
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\bin\Debug\IRdekoder.pdb
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csprojAssemblyReference.cache
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.Form1.resources
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.Properties.Resources.resources
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csproj.GenerateResource.cache
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csproj.CoreCompileInputs.cache
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.exe
+c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.pdb
