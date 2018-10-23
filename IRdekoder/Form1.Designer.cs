@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.portlist = new System.Windows.Forms.ComboBox();
             this.baudlist = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -50,8 +50,14 @@
             this.buttonPlot = new System.Windows.Forms.Button();
             this.buttonSaveChart = new System.Windows.Forms.Button();
             this.buttonClearPlot = new System.Windows.Forms.Button();
+            this.bitlist = new System.Windows.Forms.ComboBox();
+            this.buttonPlotBits = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // portlist
@@ -193,16 +199,16 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
             this.chart1.Location = new System.Drawing.Point(26, 90);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(1585, 300);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -240,6 +246,65 @@
             this.buttonClearPlot.UseVisualStyleBackColor = true;
             this.buttonClearPlot.Click += new System.EventHandler(this.buttonClearPlot_Click);
             // 
+            // bitlist
+            // 
+            this.bitlist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.bitlist.Enabled = false;
+            this.bitlist.FormattingEnabled = true;
+            this.bitlist.Items.AddRange(new object[] {
+            "8",
+            "16"});
+            this.bitlist.Location = new System.Drawing.Point(6, 39);
+            this.bitlist.Name = "bitlist";
+            this.bitlist.Size = new System.Drawing.Size(152, 21);
+            this.bitlist.TabIndex = 15;
+            // 
+            // buttonPlotBits
+            // 
+            this.buttonPlotBits.Enabled = false;
+            this.buttonPlotBits.Location = new System.Drawing.Point(6, 66);
+            this.buttonPlotBits.Name = "buttonPlotBits";
+            this.buttonPlotBits.Size = new System.Drawing.Size(152, 41);
+            this.buttonPlotBits.TabIndex = 16;
+            this.buttonPlotBits.Text = "Plot bits";
+            this.buttonPlotBits.UseVisualStyleBackColor = true;
+            this.buttonPlotBits.Click += new System.EventHandler(this.buttonPlotBits_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Number of bits";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox3.ForeColor = System.Drawing.Color.Red;
+            this.textBox3.Location = new System.Drawing.Point(519, 30);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(634, 24);
+            this.textBox3.TabIndex = 18;
+            this.textBox3.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.bitlist);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.buttonPlotBits);
+            this.groupBox2.Enabled = false;
+            this.groupBox2.Location = new System.Drawing.Point(292, 396);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(164, 143);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Last 8/16 bits analysis";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +312,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1623, 685);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.buttonClearPlot);
             this.Controls.Add(this.buttonSaveChart);
             this.Controls.Add(this.buttonPlot);
@@ -268,6 +335,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +362,11 @@
         private System.Windows.Forms.Button buttonPlot;
         private System.Windows.Forms.Button buttonSaveChart;
         private System.Windows.Forms.Button buttonClearPlot;
+        private System.Windows.Forms.ComboBox bitlist;
+        private System.Windows.Forms.Button buttonPlotBits;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

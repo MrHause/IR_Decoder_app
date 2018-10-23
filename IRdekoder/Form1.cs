@@ -15,8 +15,10 @@ namespace IRdekoder
 {
     public partial class Form1 : Form
     {
+        int Flag;
         private string in_data;
         private string in_data2;
+        private string temp_in_data;
         int color_index;
         List<int> int_list = new List<int>();
         List<int> time_list = new List<int>();
@@ -77,6 +79,9 @@ namespace IRdekoder
                     buttonSaveTime.Enabled = true;
                     buttonSaveChart.Enabled = true;
                     buttonClearPlot.Enabled = true;
+                    buttonPlotBits.Enabled = true;
+                    groupBox2.Enabled = true;
+                    bitlist.Enabled = true;
                     textBox1.Enabled = true;
                     textBox2.Visible = true;
                     textBox2.Text = "Connected";
@@ -101,8 +106,11 @@ namespace IRdekoder
             textBox2.Clear();
             textBox2.Visible = false;
             buttonPlot.Enabled = false;
+            buttonPlotBits.Enabled = false;
             buttonSaveChart.Enabled = false;
             buttonClearPlot.Enabled = false;
+            bitlist.Enabled = false;
+            groupBox2.Enabled = false;
         }
 
         void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -129,6 +137,8 @@ namespace IRdekoder
                 series.Points.Clear();
             }
             color_index = 0;
+            textBox3.Visible = false;
+            textBox3.Text = "";
         }
 
         private void buttonSaveTime_Click(object sender, EventArgs e)
@@ -159,7 +169,14 @@ namespace IRdekoder
 
         private void buttonPlot_Click(object sender, EventArgs e)
         {
-
+            if(Flag==1)
+            {
+                foreach (var series in chart1.Series)
+                {
+                    series.Points.Clear();
+                }
+                Flag = 0;
+            }
             List<string> list = new List<string>(
                 in_data.Split(new string[] { "\r\n" },
                 StringSplitOptions.RemoveEmptyEntries));
@@ -177,6 +194,7 @@ namespace IRdekoder
                 time_list.Add(time);
             }
             MakeChart(time_list);
+            temp_in_data = in_data;
             //clear saved data
             in_data = "";
             time_list.Clear();
@@ -184,75 +202,104 @@ namespace IRdekoder
         }
         private void MakeChart(List<int>time_list)
         {
-            
-            var chart = chart1.ChartAreas[0];
-            chart.AxisX.IntervalType = DateTimeIntervalType.Number;
-
-            chart.AxisX.LabelStyle.Format = "";
-            chart.AxisY.LabelStyle.Format = "";
-            chart.AxisY.LabelStyle.IsEndLabelVisible = true;
-
-            chart.AxisX.Minimum = time_list[0] - 500;
-            chart.AxisX.Maximum = time_list[time_list.Count - 1] + 100;
-
-            chart.AxisY.Maximum = 2;
-            chart.AxisY.Minimum = 0;
-
-            chart.AxisX.Interval = 2000;
-            chart.AxisY.Interval = 1;
-            
-            if(color_index==0)
+            bool isEmpty = !time_list.Any();
+            if (isEmpty)
             {
-                chart1.Series["Signal"].Color = Color.Red;
-                int temp = 0;
-                time_list.RemoveAt(time_list.Count - 1);
-                //adding points
-                chart1.Series["Signal"].Points.AddXY(time_list[0] - 500, 0);
-
-                foreach (int el1 in time_list)
-                {
-                    if (temp % 2 == 0)
-                    {
-                        chart1.Series["Signal"].Points.AddXY(el1, 0);
-                        chart1.Series["Signal"].Points.AddXY(el1, 1);
-                    }
-
-                    else
-                    {
-                        chart1.Series["Signal"].Points.AddXY(el1, 1);
-                        chart1.Series["Signal"].Points.AddXY(el1, 0);
-                    }
-                    temp++;
-                }
+                textBox3.Visible = true;
+                textBox3.Text = "No signal received, press key on TV remote";
             }
-            else if(color_index==1)
+            else
             {
-                
-                
-                chart1.Series["Signal2"].Color = Color.Blue;
-                int temp = 0;
-                time_list.RemoveAt(time_list.Count - 1);
-                //adding points
+                textBox3.Visible = false;
+                textBox3.Text = "";
 
-                chart1.Series["Signal2"].Points.AddXY(time_list[0] - 500, 0);
+                var chart = chart1.ChartAreas[0];
+                chart.AxisX.IntervalType = DateTimeIntervalType.Number;
 
-                foreach (int el1 in time_list)
+                chart.AxisX.LabelStyle.Format = "";
+                chart.AxisY.LabelStyle.Format = "";
+                chart.AxisY.LabelStyle.IsEndLabelVisible = true;
+                if (time_list[0] > 600)
+                    chart.AxisX.Minimum = time_list[0] - 500;
+                else
+                    chart.AxisX.Minimum = 0;
+
+                chart.AxisX.Maximum = time_list[time_list.Count - 1] + 100;
+
+                chart.AxisY.Maximum = 2;
+                chart.AxisY.Minimum = 0;
+
+                chart.AxisX.Interval = 2000;
+                chart.AxisY.Interval = 1;
+
+                if (color_index == 2)
                 {
-                    if (temp % 2 == 0)
+                    color_index = 0;
+                    textBox3.Visible = true;
+                    textBox3.Text = "Maximum number of signals is 2";
+                    foreach (var series in chart1.Series)
                     {
-                        chart1.Series["Signal2"].Points.AddXY(el1, 0);
-                        chart1.Series["Signal2"].Points.AddXY(el1, 1);
+                        series.Points.Clear();
                     }
-
-                    else
-                    {
-                        chart1.Series["Signal2"].Points.AddXY(el1, 1);
-                        chart1.Series["Signal2"].Points.AddXY(el1, 0);
-                    }
-                    temp++;
                 }
+                
+                if (color_index == 0)
+                {
+                    chart1.Series["Signal"].Color = Color.Red;
+                    int temp = 0;
+                    time_list.RemoveAt(time_list.Count - 1);
+                    //adding points
+                    if (time_list[0] > 600)
+                        chart1.Series["Signal"].Points.AddXY(time_list[0] - 500, 0);
+                    else
+                        chart1.Series["Signal"].Points.AddXY(time_list[0], 0);
+                    foreach (int el1 in time_list)
+                    {
+                        if (temp % 2 == 0)
+                        {
+                            chart1.Series["Signal"].Points.AddXY(el1, 0);
+                            chart1.Series["Signal"].Points.AddXY(el1, 1);
+                        }
+
+                        else
+                        {
+                            chart1.Series["Signal"].Points.AddXY(el1, 1);
+                            chart1.Series["Signal"].Points.AddXY(el1, 0);
+                        }
+                        temp++;
+                    }
+                }
+                else if (color_index == 1)
+                {
+
+
+                    chart1.Series["Signal2"].Color = Color.Blue;
+                    int temp = 0;
+                    time_list.RemoveAt(time_list.Count - 1);
+                    //adding points
+                    if (time_list[0] > 600)
+                        chart1.Series["Signal2"].Points.AddXY(time_list[0] - 500, 0);
+                    else
+                        chart1.Series["Signal2"].Points.AddXY(time_list[0], 0);
+                    foreach (int el1 in time_list)
+                    {
+                        if (temp % 2 == 0)
+                        {
+                            chart1.Series["Signal2"].Points.AddXY(el1, 0);
+                            chart1.Series["Signal2"].Points.AddXY(el1, 1);
+                        }
+
+                        else
+                        {
+                            chart1.Series["Signal2"].Points.AddXY(el1, 1);
+                            chart1.Series["Signal2"].Points.AddXY(el1, 0);
+                        }
+                        temp++;
+                    }
+                }
+                color_index++;
             }
-            color_index++;
+            
         }
 
         private void buttonSaveChart_Click(object sender, EventArgs e)
@@ -285,6 +332,52 @@ namespace IRdekoder
                 series.Points.Clear();
             }
             color_index = 0;
+            textBox3.Visible = false;
+            textBox3.Text = "";
+        }
+
+        private void buttonPlotBits_Click(object sender, EventArgs e)
+        {
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear();
+            }
+            color_index = 0;
+            List<int> int_time_list = new List<int>();
+            List<int> sum_time_list = new List<int>();
+            List<string> list = new List<string>(
+                temp_in_data.Split(new string[] { "\r\n" },
+                StringSplitOptions.RemoveEmptyEntries));
+            int time = 0;
+            int x = 0;
+            foreach (string el in list)
+            {
+                Int32.TryParse(el, out x);
+                int_time_list.Add(x);
+            }
+
+            if (bitlist.Text=="8")
+            {
+
+                for (int i = int_time_list.Count-17; i < int_time_list.Count; i++)
+                {
+                    time += int_time_list[i];
+                    sum_time_list.Add(time);
+                }
+                MakeChart(sum_time_list);
+            }
+            else if(bitlist.Text=="16")
+            {
+                for (int i = int_time_list.Count - 33; i < int_time_list.Count; i++)
+                {
+                    time += int_time_list[i];
+                    sum_time_list.Add(time);
+                    
+                }
+                MakeChart(sum_time_list);
+            }
+            color_index = 0;
+            Flag = 1;
         }
     }
 }
