@@ -8,3 +8,4 @@ c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csproj.Gen
 c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csproj.CoreCompileInputs.cache
 c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.exe
 c:\users\mrhause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.pdb
+C:\Users\MrHause\source\repos\IRdekoder\IRdekoder\obj\Debug\IRdekoder.csproj.ResolveComReference.cache

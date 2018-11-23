@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.portlist = new System.Windows.Forms.ComboBox();
             this.baudlist = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -55,9 +55,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonSaveExcel = new System.Windows.Forms.Button();
+            this.pulselist = new System.Windows.Forms.ComboBox();
+            this.pulse_text = new System.Windows.Forms.TextBox();
+            this.buttonTry = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // portlist
@@ -153,7 +160,7 @@
             this.buttonSaveTime.Name = "buttonSaveTime";
             this.buttonSaveTime.Size = new System.Drawing.Size(75, 41);
             this.buttonSaveTime.TabIndex = 6;
-            this.buttonSaveTime.Text = "Save times";
+            this.buttonSaveTime.Text = "Save times to txt";
             this.buttonSaveTime.UseVisualStyleBackColor = true;
             this.buttonSaveTime.Click += new System.EventHandler(this.buttonSaveTime_Click);
             // 
@@ -199,16 +206,16 @@
             // 
             // chart1
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(26, 90);
             this.chart1.Name = "chart1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart1.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1585, 300);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -216,7 +223,7 @@
             // buttonPlot
             // 
             this.buttonPlot.Enabled = false;
-            this.buttonPlot.Location = new System.Drawing.Point(183, 498);
+            this.buttonPlot.Location = new System.Drawing.Point(183, 545);
             this.buttonPlot.Name = "buttonPlot";
             this.buttonPlot.Size = new System.Drawing.Size(75, 41);
             this.buttonPlot.TabIndex = 12;
@@ -227,7 +234,7 @@
             // buttonSaveChart
             // 
             this.buttonSaveChart.Enabled = false;
-            this.buttonSaveChart.Location = new System.Drawing.Point(183, 451);
+            this.buttonSaveChart.Location = new System.Drawing.Point(183, 498);
             this.buttonSaveChart.Name = "buttonSaveChart";
             this.buttonSaveChart.Size = new System.Drawing.Size(75, 41);
             this.buttonSaveChart.TabIndex = 13;
@@ -238,7 +245,7 @@
             // buttonClearPlot
             // 
             this.buttonClearPlot.Enabled = false;
-            this.buttonClearPlot.Location = new System.Drawing.Point(183, 545);
+            this.buttonClearPlot.Location = new System.Drawing.Point(183, 592);
             this.buttonClearPlot.Name = "buttonClearPlot";
             this.buttonClearPlot.Size = new System.Drawing.Size(75, 41);
             this.buttonClearPlot.TabIndex = 14;
@@ -275,9 +282,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.Size = new System.Drawing.Size(119, 13);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Number of bits";
+            this.label4.Text = "Number of last changes";
             // 
             // textBox3
             // 
@@ -300,10 +307,79 @@
             this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(292, 396);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(164, 143);
+            this.groupBox2.Size = new System.Drawing.Size(164, 122);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Last 8/16 bits analysis";
+            this.groupBox2.Text = "Last 8/16 changes analysis";
+            // 
+            // buttonSaveExcel
+            // 
+            this.buttonSaveExcel.Enabled = false;
+            this.buttonSaveExcel.Location = new System.Drawing.Point(183, 451);
+            this.buttonSaveExcel.Name = "buttonSaveExcel";
+            this.buttonSaveExcel.Size = new System.Drawing.Size(75, 41);
+            this.buttonSaveExcel.TabIndex = 20;
+            this.buttonSaveExcel.Text = "save times to excel";
+            this.buttonSaveExcel.UseVisualStyleBackColor = true;
+            this.buttonSaveExcel.Click += new System.EventHandler(this.buttonSaveExcel_Click);
+            // 
+            // pulselist
+            // 
+            this.pulselist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pulselist.Enabled = false;
+            this.pulselist.FormattingEnabled = true;
+            this.pulselist.Items.AddRange(new object[] {
+            "BI Phase Coding",
+            "Pulse Distance Coding",
+            "Pulse Lenght Coding"});
+            this.pulselist.Location = new System.Drawing.Point(30, 38);
+            this.pulselist.Name = "pulselist";
+            this.pulselist.Size = new System.Drawing.Size(152, 21);
+            this.pulselist.TabIndex = 21;
+            // 
+            // pulse_text
+            // 
+            this.pulse_text.Enabled = false;
+            this.pulse_text.Location = new System.Drawing.Point(200, 13);
+            this.pulse_text.Multiline = true;
+            this.pulse_text.Name = "pulse_text";
+            this.pulse_text.ReadOnly = true;
+            this.pulse_text.Size = new System.Drawing.Size(138, 93);
+            this.pulse_text.TabIndex = 2;
+            // 
+            // buttonTry
+            // 
+            this.buttonTry.Enabled = false;
+            this.buttonTry.Location = new System.Drawing.Point(30, 65);
+            this.buttonTry.Name = "buttonTry";
+            this.buttonTry.Size = new System.Drawing.Size(152, 41);
+            this.buttonTry.TabIndex = 22;
+            this.buttonTry.Text = "Try read binary code";
+            this.buttonTry.UseVisualStyleBackColor = true;
+            this.buttonTry.Click += new System.EventHandler(this.buttonTry_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Coding type";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.buttonTry);
+            this.groupBox3.Controls.Add(this.pulse_text);
+            this.groupBox3.Controls.Add(this.pulselist);
+            this.groupBox3.Enabled = false;
+            this.groupBox3.Location = new System.Drawing.Point(474, 397);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(344, 121);
+            this.groupBox3.TabIndex = 24;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Read binary code from plot";
             // 
             // Form1
             // 
@@ -312,6 +388,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1623, 685);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.buttonSaveExcel);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.buttonClearPlot);
@@ -337,6 +415,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,6 +447,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button buttonSaveExcel;
+        private System.Windows.Forms.ComboBox pulselist;
+        private System.Windows.Forms.TextBox pulse_text;
+        private System.Windows.Forms.Button buttonTry;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 
