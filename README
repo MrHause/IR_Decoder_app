@@ -1,12 +1,8 @@
 ## Overview
-It's project which allows users receive IR data from TV remote and see how the frame looks like. It allows users to get codes of particular buttons in remotes.
-In this project has been built an device which receive InfraRed data sent from TV remote. It consist fo several parts: AVR microcontroler, IR sensor, UART converter and additional electrical elements. 
-The program has been written in C language in Atmel Studio 7 environment. It receives data from TV remote and then calculate time of High and Low state of the incomming signal. The times are stored in cyclical buffer
-and then are sent using UART communication to the PC. The second part of the project is PC application which receive data from device and plot signal and allow users to decode and read binary values. 
-The PC application can be found there: [PC Application for IR decoder](https://bitbucket.org/MrHause/irdecoder/src/master/)
-
+It's second part of the project which receive data from IR receiver device. This part can be found here: [IR receiver AVR](https://bitbucket.org/MrHause/ir_decoder_avr/src/master/)
+This application has been made in C# programming language. It listens on selected COM port. When signal is received by the device we can see in the terminal calculated times of the particulat states. The by using button user can
+plot the receive signal and use some tools for analyse. When user know which coding type is used in remote, application can decode it to binary representation.
 ## Technical overview
-* AVR microcontroler
-* C language
-* IR receiver device with PCB board
-* UART communication
+* C#
+* WindowsForm
+* UART
